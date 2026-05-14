@@ -1,0 +1,96 @@
+{
+  "name": "Tyrannosaurus",
+  "era": "Mesozoic",
+  "period": "Cretaceous",
+  "category": "Carnivores",
+  "tags": ["Apex!", "Carnivore", "Theropod"],
+  "stats": {
+    "HP": 250,
+    "Stamina": 800,
+    "Hunger": 2000,
+    "Diet": "Carnivore",
+    "Status": "Apex!"
+  },
+  "information": [
+    "The Tyrannosaurus is a big carnivore terophod that ruled in the north of the Overworld aprox 66 million years ago, being one of the most dangerous animals and an absolute beast with an terrific strenght.",
+    "This animal wont be dangerous to the player at all, being more interested on bigger preys like Triceratops, Ankylosaurus, Deinocheirus, Edmontosaurusm, etc. It could be interested on some smaller animals if they are close enough or the Tyrannosaurus is hungry.",
+    "Also it causes \"Fear\" effect to entities with its strong and intimidating roar!",
+    "Babies help parent to chase smaller preys or hunting big animals with the parent."
+  ],
+  "guide": [
+    {
+      "icon": "😵‍💫",
+      "title": "Distraction",
+      "content": "It can chase you destroying everything weak enough to reach its prey but aside that, it can be distracted with \"Redstone Torches\" as they feel some kind of interest by its red glow and also making it chase it like a cat trying to catch a laser!"
+    },
+    {
+      "icon": "🦖",
+      "title": "Taming",
+      "content": "With a \"Goat Horn\" make strong sounds to intimidate the Tyrannosaurus and it will bow its head, showing weakness and seeing you as the alpha! You have to feed it when its scared to tame."
+    },
+    {
+      "icon": "🏇",
+      "title": "Riding",
+      "content": "When riding it you feel like the king of the Overworld, you can attack, roar, stomp, and do a charge bite that duplicates damage and causes fracture effect on damaged entities!"
+    },
+    {
+      "icon": "🛡️",
+      "title": "Armor",
+      "content": "The Tyrannosaurus can be equiped with an armor made of Netherite, Triceratops horns and leather and Ankylosaurus armor, making the rex more resistant to attacks and invulnerable to arrows."
+    },
+    {
+      "icon": "📛",
+      "title": "Nametags",
+      "content": [
+        "Vastatosaurus ( Kong 2005 )",
+        "Sharptooth ( The Land Before Time)",
+        "Barney",
+        "Jurassic Park",
+        "Momma Rex ( Ice Age 3)",
+        "Jurnaro | Xish ( The Dawn Era: classic skin)",
+        "Fang (Primal)"
+      ]
+    },
+    {
+      "icon": "🏅",
+      "title": "Advancements",
+      "content": [
+        "Tyrant King | Spot a Tyrannosaur",
+        "Long live the King! | Defeat a Tyrannosaur",
+        "Im the alpha here! | Tame a Tyrannosaur",
+        "Tastes like chicken... | Cook and eat Tyrannosaur meat!",
+        "Just like Dino Riders! | Equip an armor to a Tyrannosaur.",
+        "You're not it's mother! | Steal a Tyrannosaur egg."
+      ]
+    },
+    {
+      "icon": "💡",
+      "title": "Trivia",
+      "content": [
+        "Rex taming method it's based HTTYD.",
+        "Babies helping parent it's based on Life on Our Planet.",
+        "There are references to Ice Age 3 and Jurassic Park.",
+        "They can dance."
+      ]
+    }
+  ],
+  "dimorphism": {
+    "male": [
+      "More Agressive",
+      "Prefers stay solitary before and after mating",
+      "Head & Tail have a strong red color, also more \"horned\" eye brows and snout."
+    ],
+    "female": [
+      "More closer to babies",
+      "More Active for hunting",
+      "More Territorial",
+      "Less Colorful"
+    ]
+  },
+  "visuals": {
+  "male": "/images/mobs/tyrannosaurus/Tyrannosaurus_redvariant!!.png",
+  "female": "/images/mobs/tyrannosaurus/Tyrannosaurus_genders.png",
+  "action": "/images/mobs/tyrannosaurus/roar.png" 
+},
+  "audio": "/audio/Tyrannosaurus_sound.mov"
+}
