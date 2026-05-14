@@ -1,0 +1,71 @@
+---
+/* src/pages/community/index.astro 
+   - Layout: Cấu trúc đồng bộ với trang Docs (pt-32, gap-16)[cite: 1].
+   - Structure: Grid 2 cột, tự động căn giữa theo chiều dọc (items-center)[cite: 2, 12].
+   - Design: Sử dụng 'ArtifactViewer' để xem ảnh tương tác thay cho ảnh tĩnh[cite: 3].
+*/
+import RootLayout from "@/layouts/RootLayout.astro";
+import ArtifactViewer from "@/shared/components/gallery/ArtifactViewer";
+---
+
+<RootLayout title="Community | Ancient Nature">
+  <main class="relative z-10 mx-auto w-full max-w-[1400px] px-6 lg:px-12">
+    
+    <div class="container grid min-h-[calc(100vh-4rem)] grid-cols-1 gap-16 pt-32 pb-10 px-8 lg:grid-cols-2 lg:items-center">
+      
+      <div class="flex flex-col space-y-12">
+        
+        <section class="liquid-glass rounded-lg p-10 text-center lg:text-left">
+          <h1 class="text-5xl font-black uppercase tracking-tighter mb-4 tracking-tighter">Join the Network</h1>
+          <p class="text-sm text-muted-foreground mb-8 max-w-md mx-auto lg:mx-0">
+            Report bugs, request features, and discuss prehistoric survival strategies with other paleontologists.
+          </p>
+          <a href="#" class="inline-flex h-12 items-center justify-center rounded-full bg-foreground px-8 text-xs font-black uppercase tracking-widest text-background transition-transform hover:scale-105 active:scale-95">
+            Connect to Discord
+          </a>
+        </section>
+
+        <section class="space-y-6">
+          <h2 class="text-[10px] font-black uppercase tracking-[0.4em] text-foreground opacity-40 px-2">
+            Development Credits
+          </h2>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="liquid-glass rounded-lg p-6">
+              <span class="text-[10px] font-bold uppercase opacity-40 mb-3 block">Director</span>
+              <h3 class="text-xl font-black uppercase tracking-tighter">Reaper</h3>
+            </div>
+
+            <div class="liquid-glass rounded-lg p-6">
+              <span class="text-[10px] font-bold uppercase opacity-40 mb-3 block">Authorized Assets</span>
+              <h4 class="text-sm font-bold uppercase tracking-tight">The Dawn Era</h4>
+              <p class="text-[9px] opacity-40 mt-1 uppercase">Owned by Reaper & Mush Co.</p>
+            </div>
+          </div>
+
+          <div class="liquid-glass rounded-lg p-6">
+            <span class="text-[10px] font-bold uppercase opacity-40 mb-4 block">Programmers Team</span>
+            <div class="flex flex-wrap gap-2">
+              {["Monkey_biznec", "DarkBlade", "Axtrough", "Oiha", "ReinierTheGhost", "BlackGear", "DinoFazbearYT", "VoidArkana", "Reaper"].map((name) => (
+                <span class="rounded-full border border-foreground/10 bg-foreground/5 px-3 py-1 text-[10px] font-bold uppercase transition-colors hover:bg-foreground hover:text-background cursor-default">
+                  {name}
+                </span>
+              ))}
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="relative flex h-full w-full items-center justify-center">
+        <div class="relative w-full h-fit group flex items-center justify-center">
+          
+          <ArtifactViewer client:load />
+          
+          <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 h-64 bg-primary/10 blur-[100px] -z-10 rounded-full opacity-50"></div>
+          
+        </div>
+      </div>
+
+    </div>
+  </main>
+</RootLayout>

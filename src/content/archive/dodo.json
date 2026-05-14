@@ -1,0 +1,57 @@
+{
+  "name": "Dodo",
+  "era": "Cenozoic",
+  "period": "Holocene",
+  "category": "Herbivores",
+  "tags": ["Passive", "Flightless", "Extinct"],
+  "stats": {
+    "HP": "8 pts (4 hearts)",
+    "Status": "Passive",
+    "Diet": "Herbivore"
+  },
+  "information": [
+    "Raphus cucullatus. The dodo, a now-extinct species of flightless bird, was an infamously docile animal. Inhabiting only the small island of Mauritius and isolated for the entirety of its existence, its fearlessness of humans was partially to blame for its demise.",
+    "AN's dodo is alive and well, and can rarely be found in flocks of 1-4 in sparse jungles, dawdling around and eating melons when hungry. They can also be revived."
+  ],
+  "guide": [
+    {
+      "icon": "🐾",
+      "title": "Temperament",
+      "content": "Dodos have few natural predators, hence their passive nature. They are easy to approach and will never retaliate if attacked - only let out a squawk and scamper away, causing other nearby dodos to flee as well."
+    },
+    {
+      "icon": "🤠",
+      "title": "Taming",
+      "content": "To tame a dodo, all you need to do is drop sweet berries, melons, or glistening melons near it, and it will eat. When tamed, you can tell it to follow, wander, or sit."
+    },
+    {
+      "icon": "💘",
+      "title": "Breeding",
+      "content": "Breeding may happen naturally, or you can breed a male and a female dodo by feeding them both melons or sweet berries. Female dodos will lay 1-3 eggs, which if kept safe, will eventually hatch into adorable chicks!"
+    },
+    {
+      "icon": "⚔️",
+      "title": "Drops",
+      "content": ["1 Raw Dodo → Cooked Dodo (restores 2 hunger)", "1-2 Feathers"]
+    },
+    {
+      "icon": "▶️",
+      "title": "Related Items",
+      "content": ["Dodo Fossil: Can be found while cleaning Holocene fossils. These are used to create dodo eggs via the revival stand.", "Dodo Egg: May hatch a baby dodo. May also be used to both create jakapil eggs or be created via the revival stand"]
+    },
+    {
+      "icon": "⭐",
+      "title": "Other Features",
+      "content": ["When presented with a jukebox and a music disc, dodos are always ready to boogie down on the dance floor!", "If let near, pigs will destroy a nest to eat the eggs. Keep them safe!"]
+    }
+  ],
+  "dimorphism": {
+    "male": ["Darker in color", "Have two plumes on top of their heads"],
+    "female": ["Lighter in color", "Featherless head"]
+  },
+  "visuals": {
+    "male": "/images/mobs/dodo/dodo.png",
+    "female": "/images/mobs/dodo/dodo.png"
+  },
+  "audio": "/audio/dodo.mp3"
+}

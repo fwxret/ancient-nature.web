@@ -1,0 +1,96 @@
+/* src/shared/styles/global.css */
+@import "tailwindcss";
+
+@plugin "tailwindcss-animate";
+
+@theme {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-border: hsl(var(--border));
+
+  /* Pill-shaped geometry */
+  --radius-pill: 9999px; /* For buttons and small tags */
+  --radius-lg: 2.5rem;   /* Extreme rounded corners for panels */
+  --radius-md: 1.5rem;   
+  --radius-sm: 1rem;     
+}
+
+@layer base {
+  :root {
+    /* PURE LIGHT MODE: Absolute White & Black */
+    --background: 0 0% 100%; /* #FFFFFF */
+    --foreground: 0 0% 0%;   /* #000000 */
+    --primary: 0 0% 0%;
+    --primary-foreground: 0 0% 100%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 40%;
+    --border: 0 0% 90%;
+  }
+
+  .dark {
+    /* PURE DARK MODE: Absolute Black & White */
+    --background: 0 0% 0%;   /* #000000 */
+    --foreground: 0 0% 100%; /* #FFFFFF */
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 0%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 60%;
+    --border: 0 0% 15%;
+  }
+}
+
+@layer components {
+  /* The Pill-Shaped Liquid Glass */
+  .liquid-glass {
+    @apply relative overflow-hidden rounded-[--radius-lg] transition-all duration-500;
+    
+    /* Light mode: Frosted white glass on white background */
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(32px) saturate(100%);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05), 
+                inset 0 1px 0 rgba(255, 255, 255, 1); 
+  }
+
+  /* Dark mode: Frosted dark glass on black background */
+  .dark .liquid-glass {
+    background: rgba(20, 20, 20, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .liquid-glass:hover {
+    transform: translateY(-4px);
+  }
+}
+
+/* Custom Scrollbar for Chrome, Edge, and Safari */
+::-webkit-scrollbar {
+  width: 5px; /* Ultra-thin width */
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* Seamless background */
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.2); /* Subtle contrast */
+  border-radius: var(--radius-pill);
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.4); /* Highlight on hover */
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--muted-foreground) / 0.2) transparent;
+}

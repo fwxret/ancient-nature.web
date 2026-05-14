@@ -1,0 +1,100 @@
+---
+/* src/pages/changelog/index.astro 
+   - Layout: Synchronized with Homepage container logic.
+   - Component: Using 'liquid-glass rounded-lg' to inherit 3rem radius from global.css.
+   - Content: Updated with real version data and Shadcn pulse effects.
+*/
+import RootLayout from "@/layouts/RootLayout.astro";
+---
+
+<RootLayout title="Changelog | Ancient Nature">
+  <main class="relative z-10 mx-auto w-full max-w-[1400px] px-6 lg:px-12">
+    
+    <div class="container flex min-h-[calc(100vh-4rem)] flex-col gap-12 pt-32 pb-10 px-8">
+      
+      <header class="mb-16">
+        <h1 class="text-6xl font-black uppercase tracking-tighter text-foreground sm:text-7xl">Changelog</h1>
+        <p class="text-sm text-muted-foreground mt-4 uppercase tracking-widest">System Update History</p>
+      </header>
+
+      <div class="relative border-l border-foreground/10 ml-4 pl-8 space-y-16">
+        
+        <div class="relative">
+          <div class="absolute -left-[41px] top-1 h-6 w-6 rounded-full border-4 border-background bg-foreground shadow-lg"></div>
+          
+          <div class="liquid-glass rounded-lg p-8 sm:p-10">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+              <div>
+                <h2 class="text-3xl font-bold uppercase tracking-tighter">Version 1.0.0</h2>
+                <p class="text-[10px] text-primary mt-1 font-bold uppercase tracking-widest">Major Completion Phase</p>
+              </div>
+              
+              <div class="flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full border border-primary/20 animate-pulse">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="animate-spin"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+                <span class="text-[10px] font-black uppercase tracking-widest leading-none">Updating in progress...</span>
+              </div>
+            </div>
+            <p class="text-sm text-muted-foreground italic">"TOMORROW ALL WILL BE COMPLETED"</p>
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="absolute -left-[39px] top-1 h-4 w-4 rounded-full border-2 border-background bg-foreground/50"></div>
+          
+          <div class="liquid-glass rounded-lg p-8 opacity-90 transition-all hover:bg-foreground/[0.02]">
+            <div class="flex justify-between items-start mb-4">
+              <h3 class="text-xl font-bold uppercase text-foreground/80">Version 0.1.1</h3>
+              <span class="text-[10px] opacity-40 font-bold uppercase tracking-widest">Nov 5, 2025</span>
+            </div>
+            <ul class="text-xs space-y-2 text-muted-foreground">
+              <li class="flex gap-2">
+                <span class="text-primary">•</span> 
+                Fixed Estemmenosuchus being aggressive to everything in the vicinity.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="absolute -left-[39px] top-1 h-4 w-4 rounded-full border-2 border-background bg-foreground/50"></div>
+          
+          <div class="liquid-glass rounded-lg p-8 transition-all hover:bg-foreground/[0.02]">
+            <div class="flex justify-between items-start mb-8">
+              <div>
+                <h3 class="text-2xl font-bold uppercase">Version 0.1.0</h3>
+                <p class="text-[10px] opacity-40 uppercase tracking-widest mt-1">The Aquatic & Mechanics Update</p>
+              </div>
+              <span class="text-[10px] opacity-40 font-bold uppercase tracking-widest">Nov 5, 2025</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+              <div class="space-y-4">
+                <h4 class="text-[10px] font-black uppercase text-primary tracking-[0.2em]">Additions</h4>
+                <ul class="text-xs space-y-3 text-muted-foreground">
+                  <li class="flex gap-2 items-start"><span class="text-primary font-bold">+</span> Added Saber-tooth Salmon</li>
+                  <li class="flex gap-2 items-start"><span class="text-primary font-bold">+</span> Added Coelacanth (Material for revival)</li>
+                  <li class="flex gap-2 items-start"><span class="text-primary font-bold">+</span> New Recipes (Jakapil arrow, eggs, lead)</li>
+                  <li class="flex gap-2 items-start"><span class="text-primary font-bold">+</span> Updated Anomalocaris model & animations</li>
+                </ul>
+              </div>
+              
+              <div class="space-y-4">
+                <h4 class="text-[10px] font-black uppercase text-foreground/40 tracking-[0.2em]">System Fixes</h4>
+                <ul class="text-[11px] space-y-2 text-muted-foreground/80 leading-relaxed">
+                  <li>• Resolved server-side compatibility issues</li>
+                  <li>• Fixed duplication bug on Pedestals and Display cases</li>
+                  <li>• Corrected gender NBT data and baby mob spawning</li>
+                  <li>• Optimized AI for water animals and breeding orders</li>
+                  <li>• Improved movement and Jakapil mechanics</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+       
+
+      </div>
+    </div>
+  </main>
+</RootLayout>

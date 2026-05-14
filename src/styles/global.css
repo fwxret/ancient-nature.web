@@ -1,0 +1,90 @@
+/* src/shared/styles/global.css */
+@import "tailwindcss";
+
+@plugin "tailwindcss-animate";
+
+@theme {
+  /* High-Contrast Monochrome Palette mapping */
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-border: hsl(var(--border));
+
+  /* PROPER SHADCN CLASS MAPPING:
+     We map Tailwind's utility classes directly to our master radius.
+     When you type 'rounded-lg' in HTML, it will call var(--radius). 
+  */
+  --radius-xl: var(--radius);
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
+
+@layer base {
+  :root {
+    /* PURE LIGHT MODE */
+    --background: 0 0% 97%; 
+    --foreground: 0 0% 0%;
+    --primary: 0 0% 0%;
+    --primary-foreground: 0 0% 100%;
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 40%;
+    --border: 0 0% 90%;
+    
+    --radius: 3rem;
+  }
+
+  .dark {
+    /* PURE DARK MODE */
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 0%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 60%;
+    --border: 0 0% 15%;
+    
+    --radius: 3rem;
+  }
+}
+
+/* src/shared/styles/global.css */
+@layer components {
+  /* LIQUID GLASS CORE 
+     Centralized logic to avoid utility class clutter and respect Tailwind v4 theme variables.
+  */
+  .liquid-glass {
+    position: relative;
+    /* Use the border-radius variable defined in @layer base */
+    border-radius: var(--radius);
+    
+    /* Frosted glass effect */
+    backdrop-filter: blur(24px) saturate(150%);
+    -webkit-backdrop-filter: blur(24px) saturate(150%);
+    
+    /* Background using your mapped colors with alpha transparency */
+    background: color-mix(in srgb, hsl(var(--background)), transparent 80%);
+    border: 1px solid color-mix(in srgb, hsl(var(--foreground)), transparent 90%);
+    
+    /* Soft elevation shadow */
+    box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.05);
+    
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .dark .liquid-glass {
+    background: color-mix(in srgb, hsl(var(--background)), transparent 60%);
+    border: 1px solid color-mix(in srgb, hsl(var(--foreground)), transparent 85%);
+    box-shadow: 0 10px 40px -6px rgba(0, 0, 0, 0.4);
+  }
+
+  .liquid-glass:hover {
+    /* Lift effect */
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px -8px rgba(0, 0, 0, 0.1);
+  }
+}
+

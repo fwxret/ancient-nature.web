@@ -1,0 +1,36 @@
+---
+/* src/pages/archive/index.astro */
+import RootLayout from "@/layouts/RootLayout.astro";
+import ArchiveExplorer from "@/shared/components/archive/ArchiveExplorer";
+import { getCollection } from "astro:content";
+
+
+const allMobs = await getCollection("archive");
+
+
+const formattedData = allMobs.map((mob) => ({
+  id: mob.id,
+  name: mob.data.name,
+  era: mob.data.era,
+  period: mob.data.period,
+  category: mob.data.category,
+  tags: mob.data.tags,
+  stats: mob.data.stats,
+  information: mob.data.information,
+  guide: mob.data.guide,
+  dimorphism: mob.data.dimorphism,
+  visuals: mob.data.visuals,
+  audio: mob.data.audio,
+}));
+---
+
+<RootLayout title="Archive | Ancient Nature">
+  <main class="relative z-10 mx-auto w-full max-w-[1400px] px-6 lg:px-12">
+    <div class="container w-full h-[calc(100vh-4rem)] pt-32 pb-10">
+      
+      
+      <ArchiveExplorer initialData={formattedData} client:load />
+
+    </div>
+  </main>
+</RootLayout>
