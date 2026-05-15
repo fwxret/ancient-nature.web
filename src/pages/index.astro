@@ -1,17 +1,154 @@
 ---
-
+/* src/pages/index.astro 
+   - SINGLE 3D Context: Removed redundant background ParticleScene.
+   - Layout: Fixed 50/50 Grid with responsive height.
+   - Targeted Rendering: ParticleScene is locked within the 2/3 flex box.
+*/
+import RootLayout from "@/layouts/RootLayout.astro";
+import ParticleScene from "@/shared/components/canvas/ParticleScene";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<RootLayout>
+  <div class="relative z-10 mx-auto w-full max-w-[1400px] px-6 lg:px-12">
+    
+    <div class="grid min-h-[calc(100vh-4rem)] grid-cols-1 gap-12 py-12 lg:grid-cols-2 lg:gap-16 lg:py-20">
+      
+      <div class="flex w-full flex-col justify-center">
+        <div class="liquid-glass rounded-lg p-8  sm:p-10 lg:p-12">
+          
+          <div class="mb-10 space-y-4">
+            <h1 class="text-6xl font-black uppercase leading-[0.85] tracking-tighter text-foreground sm:text-7xl lg:text-8xl">
+              The Ancient <br /> Archive
+            </h1>
+            <p class="max-w-md text-sm leading-relaxed text-muted-foreground">
+              A comprehensive curation of primordial flora, fauna, and lithic artifacts spanning three major chronological epochs.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <a href="/archive" class="group flex flex-col justify-between rounded-md border border-foreground/10 bg-foreground/5 p-6 transition-all hover:-translate-y-1 hover:bg-foreground hover:text-background hover:shadow-xl">
+              <div class="mb-4 flex items-center justify-between">
+                <h3 class="text-lg font-black uppercase tracking-tight">Begin Excavation</h3>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:translate-x-1"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </div>
+              <p class="text-xs font-semibold uppercase leading-relaxed tracking-wide opacity-70 group-hover:opacity-100">
+                Search Archive database.<br/>Find dino stats, fauna diets, and item IDs.
+              </p>
+            </a>
+            
+            <a href="/docs" class="group flex flex-col justify-between rounded-md border border-foreground/10 bg-foreground/5 p-6 transition-all hover:-translate-y-1 hover:bg-foreground hover:text-background hover:shadow-xl">
+              <div class="mb-4 flex items-center justify-between">
+                <h3 class="text-lg font-black uppercase tracking-tight">Read Manifest</h3>
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:translate-x-1"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+              </div>
+              <p class="text-xs font-semibold uppercase leading-relaxed tracking-wide opacity-70 group-hover:opacity-100">
+                Read documentation.<br/>Learn Amber extraction and SkullLib setup.
+              </p>
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="flex h-full w-full flex-col pb-4 lg:pb-8">
+        
+        <div class="relative w-full flex-[2] min-h-[350px] lg:min-h-0">
+            <ParticleScene client:only="react" />
+        </div>
+
+        <div class="flex w-full flex-[1] flex-col justify-center">
+          <div class="mx-auto w-full max-w-xl space-y-10">
+            
+            <div class="relative w-full space-y-3">
+              <div class="relative z-0 flex items-center justify-between px-2">
+                <span class="w-24 text-center text-[9px] font-black uppercase tracking-[0.2em] text-foreground opacity-50">Version</span>
+                <span class="w-28 text-center text-[9px] font-black uppercase tracking-[0.2em] text-foreground opacity-50">Status</span>
+                <span class="w-28 text-center text-[9px] font-black uppercase tracking-[0.2em] text-foreground opacity-50">Updated</span>
+              </div>
+
+              <div class="relative flex w-full items-center justify-between py-1">
+                <div class="absolute left-0 top-1/2 z-0 h-[2px] w-full -translate-y-1/2 bg-foreground/10"></div>
+
+                <div class="relative z-10 flex h-8 w-24 items-center justify-center rounded-full border border-foreground/20 bg-background text-xs font-bold tracking-widest text-foreground">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mr-1.5 opacity-60"><path d="m21 16-4 4-4-4"/><path d="M17 20V4"/><path d="m3 8 4-4 4 4"/><path d="M7 4v16"/></svg>
+                  <span>v1.0</span>
+                </div>
+
+                <div class="relative z-10 flex h-8 w-28 items-center justify-center rounded-full bg-foreground text-xs font-bold uppercase tracking-widest text-background shadow-sm">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mr-1.5 animate-spin opacity-80"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+                  <span>Live Sync</span>
+                </div>
+
+                <div class="relative z-10 flex h-8 w-28 items-center justify-center rounded-full border border-foreground/20 bg-background text-xs font-bold uppercase tracking-widest text-foreground">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="mr-1.5 opacity-60"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  <span>Loading...</span>
+                </div>
+
+                <div class="laser-scanner pointer-events-none absolute inset-0 z-50 mix-blend-difference">
+                  <div class="relative flex h-full w-full items-center justify-between">
+                    <div class="absolute left-0 top-1/2 h-[2px] w-full -translate-y-1/2 bg-white"></div>
+                    <div class="h-8 w-24 rounded-full bg-white"></div>
+                    <div class="h-8 w-28 rounded-full bg-white"></div>
+                    <div class="h-8 w-28 rounded-full bg-white"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-end justify-between border-t border-foreground/10 pt-4">
+              <span class="text-[10px] font-black uppercase tracking-[0.4em] text-foreground opacity-40">Temporal Extraction</span>
+              <div class="text-right">
+                <span id="epoch-counter" class="font-mono text-3xl font-black tracking-tighter text-foreground sm:text-4xl">541,000,000 BCE</span>
+                <p class="mt-1 text-[9px] font-bold uppercase tracking-[0.3em] text-muted-foreground">Target: Paleozoic Era</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</RootLayout>
+
+<style is:inline>
+  @keyframes scanLtrMask {
+    0%   { -webkit-mask-position: -30% 0; mask-position: -30% 0; }
+    100% { -webkit-mask-position: 130% 0; mask-position: 130% 0; }
+  }
+  .laser-scanner {
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+    -webkit-mask-size: 25% 100%;
+    mask-size: 25% 100%;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    animation: scanLtrMask 3.5s ease-in-out infinite;
+  }
+</style>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    const counterEl = document.getElementById('epoch-counter');
+    if (!counterEl) return;
+    let currentYear = 2026;
+    const targetYear = -541000000; 
+    const duration = 2500; 
+    const frameRate = 30;
+    const totalFrames = (duration / 1000) * frameRate;
+    const step = (targetYear - currentYear) / totalFrames;
+    let frame = 0;
+    const interval = setInterval(() => {
+      frame++;
+      currentYear += step;
+      if (frame >= totalFrames) {
+        currentYear = targetYear;
+        clearInterval(interval);
+      }
+      const absYear = Math.abs(Math.floor(currentYear));
+      const formattedNumber = absYear.toLocaleString('en-US');
+      const suffix = currentYear < 0 ? 'BCE' : 'CE';
+      counterEl.innerText = `${formattedNumber} ${suffix}`;
+    }, 1000 / frameRate);
+  });
+</script>

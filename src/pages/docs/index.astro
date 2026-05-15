@@ -1,0 +1,65 @@
+---
+/* File: src/pages/docs/index.astro
+  Description: Official documentation, installation guides, and technical warnings.
+  Architecture: Sidebar + Main Content layout.
+*/
+import RootLayout from "@/layouts/RootLayout.astro";
+---
+
+<RootLayout title="Docs | Ancient Nature">
+  <div class="container flex min-h-[calc(100vh-4rem)] gap-12 pt-32 pb-10 px-8">
+    
+    <aside class="hidden w-64 shrink-0 lg:block">
+      <div class="sticky top-24 space-y-8">
+        <div>
+          <h3 class="mb-4 text-[10px] font-black uppercase tracking-[0.3em] opacity-40">Getting Started</h3>
+          <ul class="space-y-3 border-l border-white/10 pl-4">
+            <li><a href="#installation" class="text-xs font-bold uppercase tracking-widest text-foreground hover:opacity-70">Installation</a></li>
+            <li><a href="#dependencies" class="text-xs font-bold uppercase tracking-widest text-muted-foreground hover:opacity-100">Dependencies</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="mb-4 text-[10px] font-black uppercase tracking-[0.3em] opacity-40">Mechanics</h3>
+          <ul class="space-y-3 border-l border-white/10 pl-4">
+            <li><a href="#fossil-cleaning" class="text-xs font-bold uppercase tracking-widest text-muted-foreground hover:opacity-100">Fossil Cleaning</a></li>
+            <li><a href="#altars" class="text-xs font-bold uppercase tracking-widest text-muted-foreground hover:opacity-100">Revival Altars</a></li>
+          </ul>
+        </div>
+      </div>
+    </aside>
+
+    <main class="flex-1 max-w-3xl space-y-16">
+      
+      <section id="dependencies" class="space-y-6">
+        <h1 class="text-4xl font-black uppercase tracking-tighter">System Requirements</h1>
+        <p class="text-sm text-muted-foreground leading-relaxed">
+          Before initiating the Ancient Nature archive on your local server, ensure all dependencies are resolved to prevent catastrophic world generation failure.
+        </p>
+
+        <div class="liquid-glass rounded-lg p-6">
+          <div class="absolute inset-0 bg-red-500/5 pointer-events-none"></div>
+          
+          <h4 class="text-xs font-black text-red-500 uppercase tracking-widest mb-4">Critical Warning</h4>
+          <ul class="space-y-2 text-sm font-medium">
+            <li class="flex items-center gap-2">
+              <div class="h-1.5 w-1.5 rounded-full bg-red-500 animate-pulse"></div>
+              <span>REQUIRES SKULLLIB Core Framework.</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <div class="h-1.5 w-1.5 rounded-full bg-orange-500"></div>
+              <span class="text-orange-400">PROJECT USES MIXINS: Expect potential mod incompatibilities.</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="fossil-cleaning" class="space-y-6">
+        <h2 class="text-2xl font-bold uppercase tracking-tight border-b border-white/10 pb-2">Fossil Extraction Protocol</h2>
+        <p class="text-sm text-muted-foreground leading-relaxed">
+          Utilize the <strong class="text-foreground">Chisel</strong> and <strong class="text-foreground">Geologist Hammer</strong> to extract ancient DNA. Equip the <strong class="text-foreground">Paleontologist Hat</strong> to outline fossil locations within mineshafts.
+        </p>
+      </section>
+
+    </main>
+  </div>
+</RootLayout>
