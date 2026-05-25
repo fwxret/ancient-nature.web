@@ -6,6 +6,7 @@
 */
 import RootLayout from "@/layouts/RootLayout.astro";
 import ParticleScene from "@/shared/components/canvas/ParticleScene";
+import { getAssetPath } from "@/shared/lib/utils";
 ---
 
 <RootLayout>
@@ -26,7 +27,7 @@ import ParticleScene from "@/shared/components/canvas/ParticleScene";
           </div>
 
           <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <a href="/archive" class="group flex flex-col justify-between rounded-md border border-foreground/10 bg-foreground/5 p-6 transition-all hover:-translate-y-1 hover:bg-foreground hover:text-background hover:shadow-xl">
+            <a href={getAssetPath("/archive")} class="group flex flex-col justify-between rounded-md border border-foreground/10 bg-foreground/5 p-6 transition-all hover:-translate-y-1 hover:bg-foreground hover:text-background hover:shadow-xl">
               <div class="mb-4 flex items-center justify-between">
                 <h3 class="text-lg font-black uppercase tracking-tight">Begin Excavation</h3>
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:translate-x-1"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
@@ -36,7 +37,7 @@ import ParticleScene from "@/shared/components/canvas/ParticleScene";
               </p>
             </a>
             
-            <a href="/docs" class="group flex flex-col justify-between rounded-md border border-foreground/10 bg-foreground/5 p-6 transition-all hover:-translate-y-1 hover:bg-foreground hover:text-background hover:shadow-xl">
+            <a href={getAssetPath("/docs")} class="group flex flex-col justify-between rounded-md border border-foreground/10 bg-foreground/5 p-6 transition-all hover:-translate-y-1 hover:bg-foreground hover:text-background hover:shadow-xl">
               <div class="mb-4 flex items-center justify-between">
                 <h3 class="text-lg font-black uppercase tracking-tight">Read Manifest</h3>
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:translate-x-1"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
