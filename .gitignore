@@ -16,7 +16,6 @@ pnpm-debug.log*
 *.mp4
 *.mov
 public/audio/
-public/images/
 .DS_Store
 Thumbs.db
 desktop.ini
