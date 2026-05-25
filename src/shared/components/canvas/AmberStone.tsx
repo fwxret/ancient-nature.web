@@ -8,7 +8,7 @@ export default function AmberStone() {
     const geometry = new THREE.SphereGeometry(0.7, 8, 5); 
     const pos = geometry.attributes.position.array as Float32Array;
     for (let i = 0; i < pos.length; i++) {
-      pos[i] += (Math.random() - 0.5) * 0.15; // Nhiễu hữu cơ
+      pos[i] += (Math.random() - 0.5) * 0.15;
     }
     const edges = new THREE.EdgesGeometry(geometry, 1);
     return edges.attributes.position.array as Float32Array;

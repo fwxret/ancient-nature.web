@@ -41,7 +41,6 @@ export default function NeuralAmberNetwork() {
 
   return (
     <group>
-      {/* Khung đường kẻ: opacity 0.3 để tinh tế */}
       <lineSegments>
         <bufferGeometry>
           <bufferAttribute attach="attributes-position" args={[positions, 3]} />
@@ -50,7 +49,6 @@ export default function NeuralAmberNetwork() {
         <lineBasicMaterial color={themeColor} transparent opacity={0.3} />
       </lineSegments>
 
-      {}
       <points>
         <bufferGeometry>
           <bufferAttribute attach="attributes-position" args={[positions, 3]} />

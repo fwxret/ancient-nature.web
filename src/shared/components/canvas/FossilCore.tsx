@@ -6,7 +6,6 @@ export default function FossilCore() {
     const nodeCount = 12;
     const pos = new Float32Array(nodeCount * 3);
     for (let i = 0; i < nodeCount; i++) {
-      // Tập trung cực nhỏ ở tâm (0.15) để trông như một mẫu vật kẹt bên trong
       pos[i * 3] = (Math.random() - 0.5) * 0.25;
       pos[i * 3 + 1] = (Math.random() - 0.5) * 0.25;
       pos[i * 3 + 2] = (Math.random() - 0.5) * 0.25;
