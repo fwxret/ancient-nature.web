@@ -53,5 +53,5 @@
     "male": "/images/mobs/dodo/dodo.png",
     "female": "/images/mobs/dodo/dodo.png"
   },
-  "audio": "/audio/dodo.mp3"
+  "audio": null
 }

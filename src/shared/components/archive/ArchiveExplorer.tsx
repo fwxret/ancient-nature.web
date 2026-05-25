@@ -1,5 +1,6 @@
 /* src/shared/components/archive/ArchiveExplorer.tsx */
-import React, { useState, useMemo, useEffect, useRef } from 'react';
+import { useState, useMemo, useEffect } from 'react';
+import { getAssetPath } from '@/shared/lib/utils';
 
 // --- 1. DATA TYPES DEFINITION ---
 type SpecimenData = {
@@ -54,6 +55,18 @@ export default function ArchiveExplorer({ initialData }: ArchiveExplorerProps) {
   const [genderView, setGenderView] = useState<'male' | 'female'>('male');
   const [isPerformingAction, setIsPerformingAction] = useState(false);
   const [imgStatus, setImgStatus] = useState<'loading' | 'loaded' | 'error'>('loading');
+
+  // Synchronize selection with URL parameter 'id' (e.g. from global search)
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const idParam = params.get('id');
+    if (idParam) {
+      const match = initialData.find(item => item.id.toLowerCase() === idParam.toLowerCase());
+      if (match) {
+        setSelectedId(match.id);
+      }
+    }
+  }, [initialData]);
   
   const [expandedEras, setExpandedEras] = useState<string[]>(
     Array.from(new Set(initialData.map(item => item.era)))
@@ -73,17 +86,14 @@ export default function ArchiveExplorer({ initialData }: ArchiveExplorerProps) {
     
     if (activeItem.visuals.action) {
       const img = new Image();
-      img.src = activeItem.visuals.action;
+      img.src = getAssetPath(activeItem.visuals.action);
     }
   }, [activeItem.id]);
 
   const handleActionTrigger = () => {
     if (!activeItem.audio) return;
 
-    // Easter Egg: Check if current specimen is the Tyrannosaurus Rex
-    const isRex = activeItem.id.toLowerCase().includes('tyrannosaurus');
-    
-    const audio = new Audio(activeItem.audio);
+    const audio = new Audio(getAssetPath(activeItem.audio));
     
     // Switch to action visual if defined in JSON
     if (activeItem.visuals.action) {
@@ -99,9 +109,10 @@ export default function ArchiveExplorer({ initialData }: ArchiveExplorerProps) {
   };
 
   // Determine final image source
-  const currentImgSrc = (isPerformingAction && activeItem.visuals.action)
+  const rawImgSrc = (isPerformingAction && activeItem.visuals.action)
     ? activeItem.visuals.action
     : (activeItem.visuals[genderView] || activeItem.visuals.male || "/images/error/placeholder.png");
+  const currentImgSrc = getAssetPath(rawImgSrc);
 
   // Filtering & Grouping
   const filteredData = useMemo(() => {
@@ -122,12 +133,12 @@ export default function ArchiveExplorer({ initialData }: ArchiveExplorerProps) {
   }, [filteredData]);
 
   return (
-    <div className={`w-full h-full flex flex-col lg:flex-row gap-6 transition-all duration-75 
+    <div className={`w-full min-h-0 flex flex-col gap-4 sm:gap-5 lg:h-full lg:flex-row lg:gap-6 transition-all duration-75 
       ${isPerformingAction && activeItem.id.toLowerCase().includes('tyrannosaurus') ? 'animate-shake' : ''}`}>
       
       {/* COLUMN 1: DIRECTORY TREE */}
-      <div className="w-full lg:w-1/4 flex flex-col gap-4 h-full">
-        <div className="liquid-glass rounded-lg p-4 shrink-0 border border-foreground/5">
+      <div className="order-1 w-full lg:w-1/4 lg:min-w-64 flex flex-col gap-4 lg:h-full">
+        <div className="liquid-glass rounded-lg p-3 sm:p-4 shrink-0 border border-foreground/5">
           <input 
             type="text" 
             placeholder="Search archive..." 
@@ -136,7 +147,7 @@ export default function ArchiveExplorer({ initialData }: ArchiveExplorerProps) {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
-        <div className="liquid-glass rounded-lg p-4 flex-1 overflow-y-auto border border-foreground/5 no-scrollbar">
+        <div className="liquid-glass rounded-lg p-3 sm:p-4 max-h-80 overflow-y-auto border border-foreground/5 no-scrollbar lg:max-h-none lg:flex-1">
           {Object.entries(groupedData).map(([era, categories]) => (
             <div key={era} className="mb-4 select-none">
               <button 
@@ -171,17 +182,17 @@ export default function ArchiveExplorer({ initialData }: ArchiveExplorerProps) {
       </div>
 
       {/* COLUMN 2: INFORMATION */}
-      <div className="w-full lg:w-1/3 liquid-glass rounded-lg p-8 border border-foreground/5 flex flex-col h-full overflow-y-auto no-scrollbar scroll-smooth">
+      <div className="order-3 w-full lg:order-2 lg:w-1/3 liquid-glass rounded-lg p-5 sm:p-6 lg:p-8 border border-foreground/5 flex flex-col lg:h-full lg:overflow-y-auto no-scrollbar scroll-smooth">
         <span className="text-[10px] font-black uppercase tracking-[0.5em] text-foreground/40 mb-2">{activeItem.period} • {activeItem.category}</span>
-        <h2 className="text-4xl font-black uppercase tracking-tighter text-foreground mb-6">{activeItem.name}</h2>
+        <h2 className="text-3xl sm:text-4xl font-black uppercase tracking-tighter text-foreground mb-5 sm:mb-6 break-words">{activeItem.name}</h2>
         
-        <div className="flex flex-wrap gap-2 mb-8">
+        <div className="flex flex-wrap gap-2 mb-6 sm:mb-8">
           {activeItem.tags.map(tag => (
             <span key={tag} className="px-3 py-1 rounded-full border border-foreground/20 bg-foreground/5 text-[9px] font-bold uppercase tracking-widest text-foreground/80">{tag}</span>
           ))}
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6 sm:mb-8">
           {Object.entries(activeItem.stats).map(([key, value]) => (
             <div key={key} className="bg-foreground/5 border border-foreground/10 rounded-md p-3">
               <span className="text-[8px] font-black uppercase tracking-[0.2em] text-foreground/40 block mb-1">{key}</span>
@@ -213,8 +224,8 @@ export default function ArchiveExplorer({ initialData }: ArchiveExplorerProps) {
       </div>
 
       {/* COLUMN 3: VISUAL ENGINE */}
-      <div className="w-full lg:flex-1 liquid-glass rounded-lg p-8 border border-foreground/5 flex flex-col items-center justify-center relative h-full overflow-hidden">
-        <div className="relative w-full flex-1 flex items-center justify-center">
+      <div className="order-2 w-full min-h-[360px] sm:min-h-[440px] lg:order-3 lg:flex-1 liquid-glass rounded-lg p-5 sm:p-8 border border-foreground/5 flex flex-col items-center justify-center relative lg:h-full overflow-hidden">
+        <div className="relative w-full min-h-0 flex-1 flex items-center justify-center">
           
           {/* Performance Skeleton */}
           {imgStatus === 'loading' && (
@@ -225,7 +236,7 @@ export default function ArchiveExplorer({ initialData }: ArchiveExplorerProps) {
 
           {/* Ghost Image Layer */}
           <div className="absolute inset-0 opacity-[0.05] pointer-events-none blur-2xl"
-            style={{ backgroundImage: "url('/images/error/placeholder.png')", backgroundSize: '40%', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }} 
+            style={{ backgroundImage: `url('${getAssetPath("/images/error/placeholder.png")}')`, backgroundSize: '40%', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }} 
           />
 
           <img 
@@ -241,7 +252,7 @@ export default function ArchiveExplorer({ initialData }: ArchiveExplorerProps) {
             `}
             onError={(e) => {
               setImgStatus('error');
-              const fallback = "/images/error/placeholder.png";
+              const fallback = getAssetPath("/images/error/placeholder.png");
               if (e.currentTarget.src !== window.location.origin + fallback) {
                 e.currentTarget.src = fallback;
               }
@@ -251,7 +262,7 @@ export default function ArchiveExplorer({ initialData }: ArchiveExplorerProps) {
 
         {/* DYNAMIC ACTION CONTROLS */}
         {(activeItem.visuals.female || activeItem.audio) && (
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-4 bg-background/60 backdrop-blur-md rounded-full px-4 py-2 border border-foreground/10 shadow-xl z-20">
+          <div className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 flex max-w-[calc(100%-2rem)] items-center gap-3 sm:gap-4 bg-background/60 backdrop-blur-md rounded-full px-3 sm:px-4 py-2 border border-foreground/10 shadow-xl z-20">
             {activeItem.visuals.female && (
               <div className="flex bg-foreground/5 rounded-full p-1 border border-foreground/10">
                 <button onClick={() => setGenderView('male')} className={`w-8 h-8 rounded-full flex items-center justify-center transition-all font-black text-[10px] ${genderView === 'male' ? 'bg-foreground text-background' : 'text-foreground/40 hover:text-foreground'}`}>M</button>
@@ -261,7 +272,7 @@ export default function ArchiveExplorer({ initialData }: ArchiveExplorerProps) {
             
             {activeItem.audio && (
               <button 
-                className={`px-6 py-2 rounded-full border text-[10px] font-black uppercase tracking-[0.2em] transition-all flex items-center gap-2 group ${isPerformingAction ? 'bg-foreground text-background scale-105 shadow-lg' : 'bg-foreground/10 border-foreground/20 text-foreground hover:bg-foreground hover:text-background'}`}
+                className={`px-4 sm:px-6 py-2 rounded-full border text-[10px] font-black uppercase tracking-[0.16em] sm:tracking-[0.2em] transition-all flex items-center gap-2 group whitespace-nowrap ${isPerformingAction ? 'bg-foreground text-background scale-105 shadow-lg' : 'bg-foreground/10 border-foreground/20 text-foreground hover:bg-foreground hover:text-background'}`}
                 onClick={handleActionTrigger}
                 disabled={isPerformingAction}
               >

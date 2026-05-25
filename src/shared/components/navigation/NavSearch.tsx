@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import Fuse from 'fuse.js';
+import { getAssetPath } from '@/shared/lib/utils';
 
 type SearchItem = {
   id: string;
@@ -33,7 +34,7 @@ export default function NavSearch() {
       setIsLoading(true);
       setError(null);
       
-      fetch('/api/search.json')
+      fetch(getAssetPath('/api/search.json'))
         .then(res => {
           if (!res.ok) throw new Error("API failed");
           return res.json();
@@ -100,7 +101,7 @@ export default function NavSearch() {
   const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       if (results.length > 0) {
-        window.location.href = `/archive?id=${results[0].id}`;
+        window.location.href = getAssetPath(`/archive?id=${results[0].id}`);
         setIsOpen(false);
       }
     } else if (e.key === 'Escape') {
@@ -156,16 +157,16 @@ export default function NavSearch() {
               {results.map((item) => (
                 <a 
                   key={item.id} 
-                  href={`/archive?id=${item.id}`}
+                  href={getAssetPath(`/archive?id=${item.id}`)}
                   onClick={() => setIsOpen(false)}
                   className="flex items-center gap-4 p-3 rounded-[var(--radius-sm)] hover:bg-muted transition-colors group cursor-pointer"
                 >
                   <div className="w-14 h-14 bg-background border border-border rounded-xl flex items-center justify-center p-1.5 overflow-hidden shrink-0 shadow-sm">
                     <img 
-                      src={item.thumbnail} 
+                      src={getAssetPath(item.thumbnail)} 
                       alt={item.name} 
                       className="max-w-full max-h-full object-contain group-hover:scale-110 transition-transform duration-300" 
-                      onError={(e) => { e.currentTarget.src = "/images/error/placeholder.png"; }} 
+                      onError={(e) => { e.currentTarget.src = getAssetPath("/images/error/placeholder.png"); }} 
                     />
                   </div>
                   <div className="flex flex-col">
@@ -197,11 +198,12 @@ export default function NavSearch() {
     <>
       <button 
         onClick={() => setIsOpen(true)}
-        className="flex items-center gap-2 px-4 py-2 bg-background border border-border hover:bg-muted rounded-[var(--radius-pill)] text-sm text-muted-foreground transition-all duration-300 w-64 shadow-sm"
+        className="flex h-9 w-9 items-center justify-center gap-2 rounded-full border border-border bg-background p-0 text-sm text-muted-foreground shadow-sm transition-all duration-300 hover:bg-muted lg:h-auto lg:w-64 lg:justify-start lg:rounded-[var(--radius-pill)] lg:px-4 lg:py-2"
+        aria-label="Search archive"
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-        <span className="font-bold text-xs uppercase tracking-widest">Search...</span>
-        <kbd className="ml-auto text-[10px] bg-muted border border-border px-2 py-0.5 rounded-md text-muted-foreground font-sans font-bold">Ctrl K</kbd>
+        <span className="hidden font-bold text-xs uppercase tracking-widest lg:inline">Search...</span>
+        <kbd className="ml-auto hidden text-[10px] bg-muted border border-border px-2 py-0.5 rounded-md text-muted-foreground font-sans font-bold lg:inline-block">Ctrl K</kbd>
       </button>
 
       {mounted && isOpen && createPortal(ModalContent, document.body)}

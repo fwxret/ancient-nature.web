@@ -7,6 +7,9 @@ import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://fwxret.github.io',
+  base: process.env.GITHUB_ACTIONS ? '/ancient-nature.web' : '/',
+
   vite: {
     plugins: [tailwindcss()]
   },

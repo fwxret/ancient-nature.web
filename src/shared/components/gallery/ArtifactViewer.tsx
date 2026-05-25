@@ -1,12 +1,15 @@
 /* src/shared/components/gallery/ArtifactViewer.tsx */
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
+import { getAssetPath } from '@/shared/lib/utils';
 
 const SPECIMEN_METADATA = {
   id: "CLASSIFIED DATA",
   title: "ANCIENT SPECIMEN: TEMPORAL OVERVIEW",
   epoch: "MIXED CHRONOLOGICAL EPOCHS",
 };
+
+const SPECIMEN_IMAGE_PATH = "/images/version1.png";
 
 export default function ArtifactViewer() {
   const [isOpen, setIsOpen] = useState(false);
@@ -45,7 +48,7 @@ export default function ArtifactViewer() {
       {/* 2. Main Image - Kept original max-size constraints as requested */}
       <div className="relative p-4 max-w-7xl max-h-[75vh] cursor-default" onClick={(e) => e.stopPropagation()}>
         <img 
-          src="/public/images/version1.png" 
+          src={getAssetPath(SPECIMEN_IMAGE_PATH)} 
           alt="Specimen" 
           className="w-full h-full object-contain drop-shadow-[0_0_80px_rgba(255,255,255,0.15)]"
         />
@@ -54,15 +57,18 @@ export default function ArtifactViewer() {
       {/* 3. Navigation/Control Bar (Bottom Bar) */}
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 pointer-events-none w-fit" onClick={(e) => e.stopPropagation()}>
         <div className="liquid-glass rounded-full px-6 py-3 flex items-center gap-6 pointer-events-auto border border-white/10 shadow-2xl">
-          <button onClick={() => setIsOpen(false)} className="text-white/60 hover:text-white transition-colors">
+          <button type="button" onClick={() => setIsOpen(false)} className="text-white/60 hover:text-white transition-colors" aria-label="Close viewer">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
           </button>
-          <button className="text-white/60 hover:text-white transition-colors">
+          <a
+            href={getAssetPath(SPECIMEN_IMAGE_PATH)}
+            target="_blank"
+            rel="noreferrer"
+            className="text-white/60 hover:text-white transition-colors"
+            aria-label="Open image in a new tab"
+          >
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-          </button>
-          <div className="w-[1px] h-4 bg-white/10"></div>
-          <button className="text-white/60 hover:text-white transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m15 18-6-6 6-6"/></svg></button>
-          <button className="text-white/60 hover:text-white transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+          </a>
         </div>
       </div>
     </div>
@@ -76,7 +82,7 @@ export default function ArtifactViewer() {
         onClick={() => setIsOpen(true)}
       >
         <img 
-          src="/public/images/version1.png" 
+          src={getAssetPath(SPECIMEN_IMAGE_PATH)} 
           alt="Specimen Overview" 
           className="w-full h-auto object-contain transition-all duration-700 group-hover:scale-110 drop-shadow-[0_20px_50px_rgba(0,0,0,0.2)]"
         />
