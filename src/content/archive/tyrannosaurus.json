@@ -92,5 +92,5 @@
   "female": "/images/mobs/tyrannosaurus/Tyrannosaurus_genders.png",
   "action": "/images/mobs/tyrannosaurus/roar.png" 
 },
-  "audio": "/audio/Tyrannosaurus_sound.mov"
+  "audio": null
 }
